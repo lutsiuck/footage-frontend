@@ -1,0 +1,47 @@
+<div class="page-wrap">
+  <div class="banner-wrap">
+    <div class="logo">
+
+    </div>
+    <div class="banner-text">
+      <h1 class="title">Welcome back to<br> the pitch.</h1>
+      <p class="description">Log in to manage your tournaments, share your latest<br>
+        highlights, and connect with the amateur football<br>
+        community.
+      </p>
+    </div>
+  </div>
+  <div class="form-wrap">
+    <h2 class="form-title">Log in</h2>
+    <p class="form-desc">Welcome back! Please enter your details.</p>
+    <form 
+      [formGroup]="loginForm"
+      (ngSubmit)="login()"
+    >
+      <div class="form-row">
+        <app-form-control-input
+          label="Email"
+          type="email"
+          formControlName="email"
+          placeholder="you@example.com"
+          [required]="true"
+        ></app-form-control-input>
+      </div>
+      <div class="form-row">
+        <app-form-control-input
+          label="Password"
+          type="password"
+          formControlName="password"
+          placeholder="Your password"
+          [required]="true"
+        ></app-form-control-input>
+      </div>
+      <app-button
+        [type]="'submit'"
+        [classType]="'primary lg'"
+        [label]="'Log in'"
+      ></app-button>
+    </form>
+    <p class="form-bottom">Don't have an account? <a [routerLink]="'/auth/sign-up'">Sign up</a></p>
+  </div>
+</div>

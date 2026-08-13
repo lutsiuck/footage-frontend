@@ -1,0 +1,141 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .go-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-right: 6px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .page-title {
+    font-size: 24px;
+    font-weight: 800;
+  }
+}
+
+.filter {
+  .search {
+    position: relative;
+    background-color: #F1F5F4;
+    border-radius: 6px;
+    margin-bottom: 24px;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      color: #6B7280;
+      transform: translateY(-50%);
+    }
+
+    input {
+      display: block;
+      height: 48px;
+      width: 100%;
+      background-color: transparent;
+      padding: 0 10px 0 48px;
+      color: #0F172A;
+
+      &::placeholder {
+        color: #757575;
+      }
+    }
+  }
+
+  .bottom-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .selects {
+    display: flex;
+
+    mat-select {
+      &:not(:last-child) {
+        margin-right: 12px;
+      }
+    }
+  }
+}
+
+.tournaments {
+  display: grid;
+  margin-top: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px;
+}
+
+.tournament {
+  border: 1px solid rgba($color: #000000, $alpha: 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.tournament-img {
+  position: relative;
+  min-height: 198px;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .tournament-status {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: rgba($color: #000000, $alpha: 0.6);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    user-select: none;
+  }
+}
+
+.tournament-bottom {
+  background-color: #fff;
+  padding: 16px;
+
+  .tournament-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #0F172A;
+    margin-bottom: 6px;
+  }
+
+  .tournament-date, .tournament-type {
+    color: #6B7280;
+  }
+
+  .tournament-type {
+    margin-bottom: 6px;
+  }
+}
+
+app-pagination {
+  display: block;
+  margin: 24px 0;
+}

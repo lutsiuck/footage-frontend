@@ -10,7 +10,27 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "skipTests": true,
+          "type": "component"
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true,
+          "type": "directive"
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:module": {},
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true,
+          "type": "service"
         }
       },
       "root": "",
@@ -26,11 +46,12 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "assets",
+                "output": "assets"
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss"
             ]
           },
           "configurations": {
@@ -52,7 +73,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "environments/environment.ts",
+                  "with": "environments/environment.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

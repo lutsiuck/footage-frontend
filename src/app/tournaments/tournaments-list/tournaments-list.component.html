@@ -1,0 +1,88 @@
+<div class="header">
+  <div class="header-right">
+    <a routerLink="/" class="go-back">
+      <svg width="16" height="16">
+        <use xlink:href="assets/svg/sprite.svg#arrow-left"></use>
+      </svg>
+    </a>
+    <h2 class="page-title">Tournaments</h2>
+  </div>
+  <div class="header-left">
+    <div class="profile">
+      <div class="avatar">
+        <img src="" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="filter">
+  <div class="search">
+    <svg width="16" height="16">
+      <use xlink:href="assets/svg/sprite.svg#search"></use>
+    </svg>
+    <input 
+      #searchRef
+      type="text"
+      [formControl]="nameFilter"
+      placeholder="Search tournaments..." />
+  </div>
+  <div class="bottom-filter">
+    <div class="selects">
+      <mat-select 
+        [className]="'filter-select'"
+        [placeholder]="'All Formats'"
+        [value]="formatFilter()"
+        [multiple]="true"
+        (valueChange)="setFormatFilter($event)"
+      >
+        @for (type of tournamentTypes; track $index) {
+          <mat-option [value]="null" style="display: none;"></mat-option>
+          <mat-option 
+            value="{{ type.value }}"
+          >
+            {{ type.label }}
+          </mat-option>
+        }
+      </mat-select>
+      <mat-select 
+        [className]="'filter-select'"
+        [placeholder]="'All Statuses'"
+        [multiple]="true"
+        [value]="statusFilter()"
+        (valueChange)="setStatusFilter($event)"
+      >
+        @for (status of tournamentStatuses; track $index) {
+          <mat-option [value]="null" style="display: none;"></mat-option>
+          <mat-option 
+            value="{{ status.value }}"
+          >
+            {{ status.label }}
+          </mat-option>
+        }
+      </mat-select>
+    </div>
+  </div>
+</div>
+<div class="tournaments">
+  @for (tournament of tournaments(); track $index) {
+    <div class="tournament">
+      <div class="tournament-img">
+        <span class="tournament-status">{{ tournament.status }}</span>
+        <img src="" alt="">
+      </div>
+      <div class="tournament-bottom">
+        <h3 class="tournament-title">{{ tournament.name }}</h3>
+        <p class="tournament-type">{{ tournament.type }}</p>
+        <p class="tournament-date">{{ tournament.start_date | date: 'dd.MM.yyyy' }} - {{ tournament.end_date | date: 'dd.MM.yyyy' }}</p>
+      </div>
+    </div>
+  }
+</div>
+@if (totalPages() > 1) {
+  <app-pagination
+    [total]="totalPages()"
+    [page]="page()"
+    [limit]="limit()"
+    (pageChange)="setPage($event)"
+  ></app-pagination>
+}

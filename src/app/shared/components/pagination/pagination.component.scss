@@ -1,0 +1,38 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 32px;
+    height: 32px;
+    color: #0F172A;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 32px;
+    height: 32px;
+    color: #0F172A;
+    cursor: pointer;
+    border: 1px solid rgba($color: #000000, $alpha: 0.08);
+    border-radius: 6px;
+    background-color: transparent;
+    transition: color .3s ease-in-out,
+      border-color .3s ease-in-out,
+      background-color .3s ease-in-out;
+
+
+    &:hover, &.active {
+      color: #FFF;
+      border-color: #0EA45A;
+      background-color: #0EA45A;
+    }
+  }
+}

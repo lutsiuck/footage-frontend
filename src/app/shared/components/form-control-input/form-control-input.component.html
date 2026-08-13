@@ -1,0 +1,28 @@
+<div 
+  class="form-control {{ className() }}"
+  [class.error]="errorMessage()"
+>
+  <p class="label">
+    {{ label() }}
+    @if (required()) {
+      <span class="required">*</span>
+    }
+  </p>
+  <input
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [value]="value()"
+    (input)="handleInput($event)"
+    (blur)="onTouched()"
+  >
+
+  @if (errorMessage()) {
+    <div class="error-message">
+      <svg width="13" height="13">
+        <use [attr.xlink:href]="'assets/svg/sprite.svg#attention'"></use>
+      </svg>
+      {{ errorMessage() }}
+    </div>
+  }
+</div>

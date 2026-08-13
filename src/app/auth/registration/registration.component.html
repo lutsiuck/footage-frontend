@@ -1,0 +1,106 @@
+<div class="page-wrap">
+  <div class="banner-wrap">
+    <div class="logo">
+
+    </div>
+    <div class="banner-text">
+      <h1 class="title">Create football<br> tournaments.<br> Share highlights.<br> Build your football profile.</h1>
+      <p class="description">Join the ultimate social ecosystem for amateur football.<br>
+        Start your journey, showcase your skills, and connect<br>
+        with the community.
+      </p>
+    </div>
+  </div>
+  <div class="form-wrap">
+    <h2 class="form-title">Create your account</h2>
+    <p class="form-desc">Enter your details below to get started.</p>
+    <form
+      [formGroup]="registrationForm"
+      (ngSubmit)="register()"
+    >
+      <div class="form-row">
+        <app-form-control-input
+          label="Name"
+          type="text"
+          placeholder="Your name"
+          formControlName="name"
+          [required]="true"
+        ></app-form-control-input>
+      </div>
+      <div class="form-row">
+        <app-form-control-input
+          label="Email"
+          type="email"
+          placeholder="you@example.com"
+          formControlName="email"
+          [required]="true"
+        ></app-form-control-input>
+      </div>
+      <div class="form-row">
+        <app-form-control-input
+          label="Password"
+          type="password"
+          placeholder="Your password"
+          formControlName="password"
+          [required]="true"
+        ></app-form-control-input>
+        <app-form-control-input
+          label="Confirm password"
+          type="password"
+          placeholder="Your confirm password"
+          formControlName="confirmPassword"
+          [required]="true"
+        ></app-form-control-input>
+      </div>
+      <div class="form-row">
+        <app-form-control-input
+          label="City"
+          type="text"
+          placeholder="Your city"
+          formControlName="city"
+        ></app-form-control-input>
+      </div>
+      <div class="form-row">
+        <div class="photo-control">
+          <p class="label">Profile Photo</p>
+          <label class="photo">
+            <span class="icon">
+              <svg width="19" height="15">
+                <use [attr.xlink:href]="'assets/svg/sprite.svg#camera'"></use>
+              </svg>
+            </span>
+            <span class="text">
+              <b>Click to upload</b>
+              SVG, PNG, JPG (max. 5MB)
+            </span>
+            <input
+              formControlName="avatar_url"
+              type="file"
+              accept="image/*"
+            >
+          </label>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="checkbox">
+          <input
+            formControlName="is_organizer"
+            type="checkbox"
+          >
+          <span class="chekmark"></span>
+          <span class="text">
+            <b>Register as Organizer</b>
+            Check this if you want to create and manage tournaments.
+          </span>
+        </label>
+      </div>
+      <app-button
+        [type]="'submit'"
+        [classType]="'primary lg'"
+        [label]="'Create account'"
+      ></app-button>
+    </form>
+    <p class="form-bottom">Already have an account? <a [routerLink]="'/auth/login'">Log in</a></p>
+  </div>
+</div>
+

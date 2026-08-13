@@ -1,0 +1,17 @@
+<div class="sidebar">
+  <a class="logo">
+
+  </a>
+  <ul class="sidebar-menu">
+    @for (item of menu; track $index) {
+      <li>
+        <a [routerLink]="item.href">
+          <svg width="20" height="20">
+            <use [attr.xlink:href]="'assets/svg/sprite.svg#menu-' + item.icon"></use>
+          </svg>
+          {{ item.name }}
+        </a>
+      </li>
+    }
+  </ul>
+</div>

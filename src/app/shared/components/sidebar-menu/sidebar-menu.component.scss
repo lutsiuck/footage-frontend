@@ -1,0 +1,33 @@
+.sidebar {
+  border-right: 1px solid #E6EEF8;
+  padding: 25px 20px;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.sidebar-menu {
+  a {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 12px;
+    font-weight: 600;
+    color: #64748B;
+    background-color: transparent;
+    transition: color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+
+    svg {
+      margin-right: 14px;
+    }
+
+    &:hover, &.active {
+      background-color: #F8FAFC;
+      color: #0F172A;
+    }
+  }
+}

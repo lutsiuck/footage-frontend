@@ -1,0 +1,81 @@
+:host {
+  ::ng-deep {
+    .page-wrap {
+      display: flex;
+      height: 100vh;
+    }
+
+    .banner-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1 0 55%;
+      width: 55%;
+      padding: 50px 136px 65px 65px;
+      background: url('/assets/images/auth-banner.jpg') center/cover no-repeat;
+
+      .banner-text {
+        .title {
+          color: #fff;
+          font-size: 48px;
+          font-weight: 800;
+          line-height: 55px;
+          letter-spacing: -1px;
+          margin-bottom: 24px;
+        }
+
+        .description {
+          color: rgba($color: #fff, $alpha: .8);
+          font-size: 18px;
+          line-height: 27px;
+        }
+      }
+    }
+
+    .form-wrap {
+      flex: 1 0 45%;
+      width: 45%;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 55px 100px;
+      
+      .form-title {
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        margin-bottom: 8px;
+      }
+
+      .form-desc {
+        font-size: 15px;
+        color: #64748B;
+        margin-bottom: 40px;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 0 16px;
+        margin-bottom: 24px;
+
+        app-form-control-input {
+          width: 100%;
+        }
+      }
+
+      .button {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .form-bottom {
+        margin-top: 24px;
+        color: #64748B;
+        text-align: center;
+
+        a {
+          color: #0F172A
+        }
+      }
+    }
+  }
+}

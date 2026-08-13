@@ -1,0 +1,55 @@
+$padding: 12px;
+
+.form-control {
+  position: relative;
+  
+  input {
+    display: block;
+    width: 100%;
+    padding: 0 $padding;
+    background-color: transparent;
+    height: 44px;
+    font-size: 13px;
+    border: 1px solid #E6EEF8;
+    border-radius: 6px;
+
+    &::placeholder {
+      color: #64748B;
+    }
+
+    &:disabled {
+      background-color: #D3D3D3;
+      color: #949494;
+      border-color: #E8E8E8;
+    }
+  }
+
+  .label {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 500;
+
+    span.required {
+      color: #E74C3C;
+    }
+  }
+
+  .error-message {
+    position: absolute;
+    display: flex;  
+    align-items: center;
+    top: calc(100% + 4px);
+    font-size: 13px;
+    color: #E74C3C;
+
+    svg {
+      margin-right: 6px;
+    }
+  }
+
+  &.error {
+    input {
+      border-color: #E74C3C;
+    }
+  }
+}

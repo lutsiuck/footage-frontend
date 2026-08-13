@@ -1,0 +1,38 @@
+.filter-select {
+  width: 220px;
+
+  .mat-mdc-select-trigger {
+    padding: 0 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  
+  .mat-mdc-select-value {
+    display: flex;
+    align-items: center;
+    height: 38px;
+    font-size: 14px;
+    
+    .mat-mdc-select-value-text {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+  }
+
+  .mat-mdc-select-panel {
+    background-color: #fff;
+  
+    .mat-mdc-option {
+      transition: background-color 0.3s ease-in-out;
+  
+      &.mat-mdc-option-active, &.mdc-list-item--selected, &:hover {
+        background-color: #F1F5F4;
+      }
+      
+      .mat-pseudo-checkbox {
+        display: none;
+      }
+    }
+  }
+}
