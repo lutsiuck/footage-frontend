@@ -61,6 +61,12 @@
         }
       </mat-select>
     </div>
+    <app-button
+      [type]="'button'"
+      [label]="'Create Tournament'"
+      [classType]="'primary sm'"
+      (buttonClick)="openCreateTournamentDialog()"
+    ></app-button>
   </div>
 </div>
 <div class="tournaments">

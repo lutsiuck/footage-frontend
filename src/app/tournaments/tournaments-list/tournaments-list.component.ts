@@ -10,6 +10,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime, distinctUntilChanged, fromEvent, switchMap } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { PaginationComponent } from '../../shared/components/pagination/pagination.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ButtonComponent } from "../../shared/components/button/button.component";
+import { ModalCreateTournamentComponent } from '../../shared/components/modal-create-tournament/modal-create-tournament.component';
+import { TOURNAMENT_TYPES } from '../../shared/consts/tournament-types.const';
 
 @Component({
   selector: 'app-tournaments-list',
@@ -18,8 +22,9 @@ import { PaginationComponent } from '../../shared/components/pagination/paginati
     ReactiveFormsModule,
     RouterLink,
     DatePipe,
-    PaginationComponent
-  ],
+    PaginationComponent,
+    ButtonComponent
+],
   templateUrl: './tournaments-list.component.html',
   styleUrl: './tournaments-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -31,6 +36,7 @@ export class TournamentsListComponent implements OnInit, AfterViewInit {
   tournamentService = inject(TournamentService);
   router = inject(Router);
   route = inject(ActivatedRoute);
+  dialog = inject(MatDialog);
   destroyRef = inject(DestroyRef);
 
   tournamentTypesEnum = TournamentTypes;
@@ -38,20 +44,7 @@ export class TournamentsListComponent implements OnInit, AfterViewInit {
 
   tournaments = signal<ITournament[]>([]);
 
-  tournamentTypes = [
-    {
-      value: TournamentTypes.LEAGUE,
-      label: 'League'
-    },
-    {
-      value: TournamentTypes.KNOCKOUT,
-      label: 'Knockout'
-    },
-    {
-      value: TournamentTypes.GROUP_KNOCKOUT,
-      label: 'Group Knockout'
-    }
-  ];
+  tournamentTypes = TOURNAMENT_TYPES;
 
   tournamentStatuses = [
     {
@@ -145,6 +138,25 @@ export class TournamentsListComponent implements OnInit, AfterViewInit {
   setPage(page: number) {
     this.page.set(page);
     this.getTournaments(this.filtersToQueryParams());
+  }
+
+  openCreateTournamentDialog() {
+    const dialogRef = this.dialog.open(ModalCreateTournamentComponent, {
+      maxWidth: '840px',
+      width: '840px',
+    });
+
+    dialogRef.afterClosed()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result: any) => {
+        if (result) {
+          this.tournamentService.createTournament(result)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe((response: ITournament) => {
+              this.router.navigate(['/tournaments', response.id]);
+            });
+        }
+      });
   }
 
   private getTournaments(params: any) {

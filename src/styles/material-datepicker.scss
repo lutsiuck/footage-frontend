@@ -1,0 +1,11 @@
+.mat-calendar {
+  .mat-calendar-body-cell {
+    &.mat-calendar-body-active {
+      .mat-calendar-body-cell-content {
+        border-radius: 50%;
+        background-color: #0F172A;
+        color: #F8FAFC;
+      }
+    }
+  }
+}

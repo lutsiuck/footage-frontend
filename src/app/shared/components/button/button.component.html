@@ -15,6 +15,7 @@
     type="{{ type() }}"
     class="button {{ classType() }}"
     [class.disabled]="disabled()"
+    (click)="buttonClick.emit()"
   >
     @if (icon()) {
       <svg width="16" height="16">

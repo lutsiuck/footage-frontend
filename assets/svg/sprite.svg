@@ -76,4 +76,30 @@
     <path d="M6.66663 8.33331C6.66663 9.7131 7.78684 10.8333 9.16663 10.8333C10.5464 10.8333 11.6666 9.7131 11.6666 8.33331C11.6666 6.95353 10.5464 5.83331 9.16663 5.83331C7.78684 5.83331 6.66663 6.95353 6.66663 8.33331V8.33331" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
 
+  <symbol id="league" viewBox="0 0 24 24" fill="none">
+    <path d="M15 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5 3H19C20.1038 3 21 3.89617 21 5V19C21 20.1038 20.1038 21 19 21H5C3.89617 21 3 20.1038 3 19V5C3 3.89617 3.89617 3 5 3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M21 9H3M21 15H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="knockout" viewBox="0 0 24 24" fill="none">
+    <path d="M17 16H21C21.5519 16 22 16.4481 22 17V21C22 21.5519 21.5519 22 21 22H17C16.4481 22 16 21.5519 16 21V17C16 16.4481 16.4481 16 17 16V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M3 16H7C7.55192 16 8 16.4481 8 17V21C8 21.5519 7.55192 22 7 22H3C2.44808 22 2 21.5519 2 21V17C2 16.4481 2.44808 16 3 16V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M10 2H14C14.5519 2 15 2.44808 15 3V7C15 7.55192 14.5519 8 14 8H10C9.44808 8 9 7.55192 9 7V3C9 2.44808 9.44808 2 10 2V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5 16V13C5 12.4481 5.44808 12 6 12H18C18.5519 12 19 12.4481 19 13V16M12 12V8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="group_knockout" viewBox="0 0 24 24" fill="none">
+    <path d="M4 3H9C9.55192 3 10 3.44808 10 4V9C10 9.55192 9.55192 10 9 10H4C3.44808 10 3 9.55192 3 9V4C3 3.44808 3.44808 3 4 3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15 3H20C20.5519 3 21 3.44808 21 4V9C21 9.55192 20.5519 10 20 10H15C14.4481 10 14 9.55192 14 9V4C14 3.44808 14.4481 3 15 3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15 14H20C20.5519 14 21 14.4481 21 15V20C21 20.5519 20.5519 21 20 21H15C14.4481 21 14 20.5519 14 20V15C14 14.4481 14.4481 14 15 14V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M4 14H9C9.55192 14 10 14.4481 10 15V20C10 20.5519 9.55192 21 9 21H4C3.44808 21 3 20.5519 3 20V15C3 14.4481 3.44808 14 4 14V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="calendar" viewBox="0 0 18 18" fill="none">
+    <path d="M6 1.5V4.5M12 1.5V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M3.75 3H14.25C15.0779 3 15.75 3.67213 15.75 4.5V15C15.75 15.8279 15.0779 16.5 14.25 16.5H3.75C2.92213 16.5 2.25 15.8279 2.25 15V4.5C2.25 3.67213 2.92213 3 3.75 3V3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M2.25 7.5H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
 </svg>
