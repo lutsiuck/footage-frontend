@@ -1,10 +1,64 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { HeaderPageComponent } from '../../shared/components/header-page/header-page.component';
+import { ITournament } from '../../shared/models/tournament.model';
+import { TournamentService } from '../../core/services/tournament.service';
+import { ActivatedRoute } from '@angular/router';
+import { EMPTY, switchMap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DatePipe } from '@angular/common';
+import { ButtonComponent } from '../../shared/components/button/button.component';
+import { TeamsComponent } from './teams/teams.component';
 
 @Component({
   selector: 'app-tournament',
-  imports: [],
+  imports: [
+    DatePipe,
+    HeaderPageComponent,
+    ButtonComponent,
+    TeamsComponent
+  ],
   templateUrl: './tournament.component.html',
   styleUrl: './tournament.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TournamentComponent {}
+export class TournamentComponent implements OnInit{
+
+  tournamentService = inject(TournamentService);
+  route = inject(ActivatedRoute);
+  destroyRef = inject(DestroyRef);
+
+  tabsMenu = signal([
+    {
+      label: 'Overview',
+      value: 'overview'
+    },
+    {
+      label: 'Matches',
+      value: 'matches'
+    },
+    {
+      label: 'Table',
+      value: 'table'
+    },
+    {
+      label: 'Teams',
+      value: 'teams'
+    },
+    {
+      label: 'Settings',
+      value: 'settings'
+    }
+  ]);
+  activeTab = signal('overview');
+  tournament = signal<ITournament | null>(null);
+
+  ngOnInit(): void {
+
+    this.route.paramMap
+      .pipe(
+        switchMap((params: any) => this.tournamentService.getTournament(params.get('id') || EMPTY)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe((tournament: ITournament) => this.tournament.set(tournament));
+  }
+}

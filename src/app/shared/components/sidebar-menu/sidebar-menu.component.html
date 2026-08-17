@@ -13,5 +13,13 @@
         </a>
       </li>
     }
+    <li>
+        <span (click)="logout()">
+          <svg width="20" height="20">
+            <use [attr.xlink:href]="'assets/svg/sprite.svg#menu-logout'"></use>
+          </svg>
+          Logout
+        </span>
+      </li>
   </ul>
 </div>

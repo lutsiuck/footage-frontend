@@ -10,13 +10,14 @@
 }
 
 .sidebar-menu {
-  a {
+  a, span {
     display: flex;
     align-items: center;
     height: 40px;
     padding: 0 12px;
     font-weight: 600;
     color: #64748B;
+    cursor: pointer;
     background-color: transparent;
     transition: color 0.3s ease-in-out,
     background-color 0.3s ease-in-out;

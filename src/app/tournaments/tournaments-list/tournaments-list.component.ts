@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ButtonComponent } from "../../shared/components/button/button.component";
 import { ModalCreateTournamentComponent } from '../../shared/components/modal-create-tournament/modal-create-tournament.component';
 import { TOURNAMENT_TYPES } from '../../shared/consts/tournament-types.const';
+import { HeaderMainComponent } from '../../shared/components/header-main/header-main.component';
 
 @Component({
   selector: 'app-tournaments-list',
@@ -23,7 +24,8 @@ import { TOURNAMENT_TYPES } from '../../shared/consts/tournament-types.const';
     RouterLink,
     DatePipe,
     PaginationComponent,
-    ButtonComponent
+    ButtonComponent,
+    HeaderMainComponent
 ],
   templateUrl: './tournaments-list.component.html',
   styleUrl: './tournaments-list.component.scss',

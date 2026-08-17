@@ -1,35 +1,3 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 25px;
-
-  .header-right {
-    display: flex;
-    align-items: center;
-  }
-
-  .go-back {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 40px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    margin-right: 6px;
-
-    svg {
-      width: 14px;
-      height: 14px;
-    }
-  }
-
-  .page-title {
-    font-size: 24px;
-    font-weight: 800;
-  }
-}
-
 .filter {
   .search {
     position: relative;
@@ -79,7 +47,7 @@
 .tournaments {
   display: grid;
   margin-top: 30px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 25px;
 }
 
@@ -91,7 +59,7 @@
 
 .tournament-img {
   position: relative;
-  min-height: 198px;
+  height: 198px;
 
   img {
     display: block;

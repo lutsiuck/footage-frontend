@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .go-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-right: 6px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .page-title {
+    font-size: 24px;
+    font-weight: 800;
+  }
+}

@@ -1,1 +1,38 @@
-<p>tournament works!</p>
+<app-header-page></app-header-page>
+<div class="page-top">
+  <div class="page-details">
+    <img 
+      class="logo"
+      [attr.src]="tournament()?.logo || 'assets/images/tournament.jpg'"  
+      alt="logo"
+    >
+    <div class="details">
+      <h2>{{ tournament()?.name }}</h2>
+      <p>{{tournament()?.teams?.length || 0}} Teams &#8226; {{tournament()?.city}}</p>
+      <p class="dates">{{tournament()?.start_date | date: 'mediumDate'}} - {{tournament()?.end_date | date: 'mediumDate'}}</p>
+    </div>
+  </div>
+  <div class="page-actions">
+    <app-button
+      [type]="'button'"
+      [classType]="'primary sm'"
+      [label]="'Follow'"
+    >
+    </app-button>
+  </div>
+</div>
+<ul class="tabs">
+  @for (menu of tabsMenu(); track $index) {
+    <li
+      [class.active]="activeTab() === menu.value"
+      (click)="activeTab.set(menu.value)"
+    >{{ menu.label }}</li>
+  }
+</ul>
+<div class="tab-body">
+  @switch (activeTab()) {
+    @case ('teams') {
+      <app-teams></app-teams>
+    }
+  }
+</div>

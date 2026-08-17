@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -9,6 +11,11 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarMenuComponent {
+
+  authService = inject(AuthService);
+  router = inject(Router);
+  destroyRef = inject(DestroyRef);
+
   menu = [
     {
       name: 'Home',
@@ -49,11 +56,17 @@ export class SidebarMenuComponent {
       name: 'Settings',
       icon: 'settings',
       href: '/settings',
-    },
-    {
-      name: 'Logout',
-      icon: 'logout',
-      href: '/logout',
     }
   ]
+
+  logout() {
+    this.authService.logout()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe(() => {
+        this.authService.setAuthData({accessToken: ''});
+        this.router.navigate(['auth']);
+      });
+  }
 }

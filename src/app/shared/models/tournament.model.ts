@@ -10,10 +10,14 @@ export interface ITournamentQuery {
 
 export interface ITournament {
   id?: string;
+  logo?: string;
   name: string;
   type: TournamentTypes;
   status?: TournamentStatusesEnum;
   start_date?: string;
   end_date?: string;
   created_by?: string;
+  city?: string;
+  // TODO:
+  teams?: any[];
 }

@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  margin-bottom: 32px;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    color: #64748B;
+    
+    svg {
+      margin-right: 4px;
+    }
+  }
+}
