@@ -1,5 +1,6 @@
-import { TournamentStatusesEnum } from "../enums/tournament-statuses.enam";
+import { TournamentStatusesEnum } from "../enums/tournament-statuses.enum";
 import { TournamentTypes } from "../enums/tournament-types.enum";
+import { ITeam } from "./team.model";
 
 export interface ITournamentQuery {
   items: ITournament[];
@@ -18,6 +19,5 @@ export interface ITournament {
   end_date?: string;
   created_by?: string;
   city?: string;
-  // TODO:
-  teams?: any[];
+  teams?: ITeam[];
 }

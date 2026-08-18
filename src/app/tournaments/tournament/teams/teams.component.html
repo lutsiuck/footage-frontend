@@ -1,1 +1,72 @@
-<p>teams works!</p>
+<div class="search">
+  <h3 class="search-label">Add Teams</h3>
+  <div class="search-input">
+    <svg class="search-icon" width="20" height="20">
+      <use xlink:href="assets/svg/sprite.svg#search"></use>
+    </svg>
+    <input 
+      [formControl]="search"
+      type="text" 
+      placeholder="Search existing teams..."
+    >
+    @if (teamsSuggestions().length > 0) {
+      <ul 
+        class="suggestions"
+        animate.leave="leaving"
+      >
+        @for (team of teamsSuggestions(); track $index) {
+          <li>
+            <div class="logo">
+              @if (team?.logo_url) {
+                <img [attr.src]="team.logo_url" alt="">
+              } @else {
+                <svg width="24" height="24">
+                  <use xlink:href="assets/svg/sprite.svg#emblema"></use>
+                </svg>
+              }
+            </div>
+            {{ team.name }}
+            <app-button 
+              [label]="'Invite'" 
+              [type]="'button'"
+              [classType]="'primary sm'"
+              (click)="onInvite.emit(team.id!)"
+            ></app-button>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+
+  <div class="teams-list">
+    @for (team of tournament()?.teams || []; track $index) {
+      <div class="team">
+        <div class="team-logo">
+          @if (team?.logo_url) {
+            <img [attr.src]="team.logo_url" alt="">
+          } @else {
+            <svg width="24" height="24">
+              <use xlink:href="assets/svg/sprite.svg#emblema"></use>
+            </svg>
+          }
+        </div>
+        <div class="team-name">
+          {{ team.name }}
+        </div>
+        <div class="team-status">
+          <span class="status">
+            {{ team.status }}
+          </span>
+        </div>
+        <div class="team-delete">
+          <app-button 
+            [label]="'Delete'" 
+            [type]="'button'"
+            [classType]="'delete sm'"
+            (click)="onDelete.emit(team.id!)"
+          ></app-button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

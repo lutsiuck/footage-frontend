@@ -24,7 +24,31 @@ export class TournamentService {
     return this.http.patch<ITournament>(`/tournaments/${tournamentId}`, payload);
   }
 
-  deleteTournament(tournamentId: string) {
-    return this.http.delete<ITournament>(`/tournaments/${tournamentId}`);
+  startTournament(tournamentId: string) {
+    return this.http.patch<ITournament>(`/tournaments/${tournamentId}/start`, {});
+  }
+
+  finishTournament(tournamentId: string) {
+    return this.http.patch<ITournament>(`/tournaments/${tournamentId}/finish`, {});
+  }
+
+  applyToTournament(tournamentId: string, teamId: string) {
+    return this.http.post<ITournament>(`/tournaments/${tournamentId}/apply`, {team_id: teamId});
+  }
+
+  inviteToTournament(tournamentId: string, teamId: string) {
+    return this.http.post<ITournament>(`/tournaments/${tournamentId}/invite`, {team_id: teamId});
+  }
+
+  approveToTournament(tournamentId: string, teamId: string) {
+    return this.http.patch<ITournament>(`/tournaments/${tournamentId}/teams/${teamId}/approve`, {});
+  }
+
+  rejectToTournament(tournamentId: string, teamId: string) {
+    return this.http.patch<ITournament>(`/tournaments/${tournamentId}/teams/${teamId}/reject`, {});
+  }
+
+  removeTeamFromTournament(tournamentId: string, teamId: string) {
+    return this.http.delete<ITournament>(`/tournaments/${tournamentId}/teams/${teamId}`);
   }
 }

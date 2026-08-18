@@ -8,6 +8,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { TeamsComponent } from './teams/teams.component';
+import { TeamService } from '../../core/services/team.service';
+import { ITeam, ITeamQuery } from '../../shared/models/team.model';
 
 @Component({
   selector: 'app-tournament',
@@ -24,6 +26,7 @@ import { TeamsComponent } from './teams/teams.component';
 export class TournamentComponent implements OnInit{
 
   tournamentService = inject(TournamentService);
+  teamsService = inject(TeamService);
   route = inject(ActivatedRoute);
   destroyRef = inject(DestroyRef);
 
@@ -51,12 +54,44 @@ export class TournamentComponent implements OnInit{
   ]);
   activeTab = signal('overview');
   tournament = signal<ITournament | null>(null);
+  teamsSuggestions = signal<ITeam[]>([]);
 
   ngOnInit(): void {
-
     this.route.paramMap
       .pipe(
         switchMap((params: any) => this.tournamentService.getTournament(params.get('id') || EMPTY)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe((tournament: ITournament) => this.tournament.set(tournament));
+  }
+
+  searchTeams(value: string | null) {
+    if (value && value.length > 2) {
+      this.teamsService.getTeams({search: value})
+        .pipe(
+          takeUntilDestroyed(this.destroyRef)
+        )
+        .subscribe((res: ITeamQuery) => {
+          this.teamsSuggestions.set(res.items);
+        });
+    } else {
+      this.teamsSuggestions.set([]);
+    }
+  }
+
+  inviteToTournament(teamId: string) {
+    this.tournamentService.inviteToTournament(this.tournament()?.id!, teamId)
+      .pipe(
+        switchMap(() => this.tournamentService.getTournament(this.tournament()?.id!)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe((tournament: ITournament) => this.tournament.set(tournament));
+  }
+
+  deleteTeam(teamId: string) {
+    this.tournamentService.removeTeamFromTournament(this.tournament()?.id!, teamId)
+      .pipe(
+        switchMap(() => this.tournamentService.getTournament(this.tournament()?.id!)),
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((tournament: ITournament) => this.tournament.set(tournament));

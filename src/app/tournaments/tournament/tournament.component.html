@@ -32,7 +32,13 @@
 <div class="tab-body">
   @switch (activeTab()) {
     @case ('teams') {
-      <app-teams></app-teams>
+      <app-teams
+        [tournament]="tournament()"
+        [teamsSuggestions]="teamsSuggestions()"
+        (onSearch)="searchTeams($event)"
+        (onInvite)="inviteToTournament($event)"
+        (onDelete)="deleteTeam($event)"
+      ></app-teams>
     }
   }
 </div>

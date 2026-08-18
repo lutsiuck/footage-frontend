@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { TournamentTypes } from '../../shared/enums/tournament-types.enum';
-import { TournamentStatusesEnum } from '../../shared/enums/tournament-statuses.enam';
+import { TournamentStatusesEnum } from '../../shared/enums/tournament-statuses.enum';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { TournamentService } from '../../core/services/tournament.service';
 import { ITournament, ITournamentQuery } from '../../shared/models/tournament.model';
