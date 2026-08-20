@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { TournamentTypes } from '../../shared/enums/tournament-types.enum';
 import { TournamentStatusesEnum } from '../../shared/enums/tournament-statuses.enum';
@@ -31,9 +31,7 @@ import { HeaderMainComponent } from '../../shared/components/header-main/header-
   styleUrl: './tournaments-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TournamentsListComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('searchRef', {static: false}) searchRef!: ElementRef<HTMLInputElement>;
+export class TournamentsListComponent implements OnInit {
 
   tournamentService = inject(TournamentService);
   router = inject(Router);
@@ -101,20 +99,17 @@ export class TournamentsListComponent implements OnInit, AfterViewInit {
         this.totalPages.set(Math.ceil(response.total / response.limit));
         this.limit.set(response.limit);
         this.page.set(response.offset / response.limit + 1);
-      })
-  }
+      });
 
-  ngAfterViewInit(): void {
-
-    this.nameFilter.valueChanges
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe((name: string | null) => {
-        this.setQueryParams({nameTournament: name});
-      })
+      this.nameFilter.valueChanges
+        .pipe(
+          debounceTime(300),
+          distinctUntilChanged(),
+          takeUntilDestroyed(this.destroyRef)
+        )
+        .subscribe((name: string | null) => {
+          this.setQueryParams({nameTournament: name});
+        });
   }
 
   setFormatFilter(formats: TournamentTypes[]) {

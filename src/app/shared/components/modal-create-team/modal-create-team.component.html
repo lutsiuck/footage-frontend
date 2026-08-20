@@ -1,0 +1,30 @@
+<div class="popup-wrap">
+  <h3 class="popup-title">Create Team</h3>
+  <form class="popup-form" [formGroup]="teamForm">
+    <div class="form-row">
+      <app-form-control-input
+        formControlName="name"
+        [placeholder]="'Team Name'"
+        [required]="true"
+        [label]="'Team Name'"
+        [errorMessage]="teamForm.get('name')?.invalid && (teamForm.get('name')?.touched || teamForm.get('name')?.dirty) ? 'Team name is required (min 3 characters).' : ''"
+      ></app-form-control-input>
+    </div>
+    <div class="form-row">
+      <app-form-control-input
+        formControlName="city"
+        [placeholder]="'City'"
+        [label]="'City'"
+        [required]="true"
+        [errorMessage]="teamForm.get('city')?.invalid && (teamForm.get('city')?.touched || teamForm.get('city')?.dirty) ? 'City must be at least 3 characters.' : ''"
+      ></app-form-control-input>
+    </div>
+    <app-button
+      [type]="'submit'"
+      [label]="'Create team'"
+      [classType]="'primary sm'"
+      (buttonClick)="submitForm()"
+    ></app-button>
+  </form>
+</div>
+

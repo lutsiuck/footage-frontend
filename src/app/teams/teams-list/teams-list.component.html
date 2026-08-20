@@ -1,0 +1,82 @@
+<app-header-main
+  [pageTitle]="'Teams'"
+></app-header-main>
+<div class="filter">
+  <div class="search">
+    <svg width="16" height="16">
+      <use xlink:href="assets/svg/sprite.svg#search"></use>
+    </svg>
+    <input
+      type="text"
+      [formControl]="nameFilter"
+      placeholder="Search team..." />
+  </div>
+  <div class="search">
+    <svg width="16" height="16">
+      <use xlink:href="assets/svg/sprite.svg#search"></use>
+    </svg>
+    <input 
+      type="text"
+      [formControl]="cityFilter"
+      placeholder="Search by cities..." />
+  </div>
+  <app-button
+    [type]="'button'"
+    [label]="'Create Team'"
+    [classType]="'primary sm'"
+    (buttonClick)="openCreateTeamDialog()"
+  ></app-button>
+</div>
+<div class="teams">
+  @for (team of teams(); track $index) {
+    <div class="team">
+      <div class="team-img">
+        @if (team?.logo_url) {
+          <img [attr.src]="team?.logo_url"  alt="">
+        } @else {
+          <svg width="64" height="64">
+            <use xlink:href="assets/svg/sprite.svg#emblema"></use>
+          </svg>
+        }
+      </div>
+      <a 
+        class="team-name"
+        [routerLink]="team.id"
+      >
+        {{ team.name }}
+      </a>
+      <p class="team-details">
+        {{ team?.city }} &bullet; {{ team?.created_at | date: 'yyyy' }}
+      </p>
+      <div class="team-bottom">
+        <div class="team-followers">
+          @for (teamMember of team?.team_members?.slice(0, 3) || []; track $index) {
+            <div class="team-member">
+              <img [attr.src]="teamMember?.user?.avatar_url ? teamMember.user.avatar_url : 'assets/images/user.png'"  alt="">
+            </div>
+          }
+          @if (team.team_members && team.team_members.length > 3) {
+            <div class="team-member">
+              + {{ team.team_members.length - 3 }}
+            </div>
+          }
+        </div>
+        <app-button
+          [type]="'button'"
+          [label]="((team?.team_members || []) | checkUserInTeam: user()?.id!) ? 'Unfollow' : 'Follow'"
+          [classType]="'secondary sm'"
+          (buttonClick)="followTeam(team.id!, team?.team_members || [])"
+        ></app-button>
+      </div>
+    </div>
+  }
+</div>
+@if (totalPages() > 1) {
+  <app-pagination
+    [total]="totalPages()"
+    [page]="page()"
+    [limit]="limit()"
+    (pageChange)="setPage($event)"
+  ></app-pagination>
+}
+

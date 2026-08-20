@@ -56,7 +56,6 @@ export class ModalCreateTournamentComponent {
       this.dialogRef.close(this.tournamentForm.value);
     } else {
       this.tournamentForm.markAllAsTouched();
-      // this.formIsValid.set(false);
     }
   }
 }

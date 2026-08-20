@@ -24,4 +24,12 @@ export class TeamService {
     return this.http.patch<ITeam>(`/teams/${teamId}`, payload);
   }
 
+  joinToTeam(teamId: string) {
+    return this.http.post<{success: boolean}>(`/teams/${teamId}/join`, {});
+  }
+
+  leaveTeam(teamId: string, userId: string) {
+    return this.http.delete<{success: boolean}>(`/teams/${teamId}/members/${userId}`);
+  }
+
 }

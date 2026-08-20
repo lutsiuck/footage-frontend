@@ -17,4 +17,15 @@ export interface ITeam {
   status?: MembershipStatuses;
   created_by?: string;
   created_at?: string;
+  team_members?: ITeamMembers[];
+}
+
+export interface ITeamMembers {
+  id: string;
+  team_id: string;
+  user: {
+    id: string,
+    name: string,
+    avatar_url?: string
+  }
 }
