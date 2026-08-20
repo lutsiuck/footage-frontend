@@ -8,6 +8,9 @@
   font-weight: 600;
   cursor: pointer;
   user-select: none;
+  transition: color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
 
   svg {
     margin-right: 8px;
@@ -17,18 +20,35 @@
     background-color: #0F172A;
     border: 1px solid #0F172A;
     color: #F8FAFC;
+
+    &:hover {
+      background-color: #F8FAFC;
+      color: #0F172A;
+    }
   }
 
   &.secondary {
     background-color: #fff;
     border: 1px solid #E8E8E8;
     color: #242424;
+
+    &:hover {
+      background-color: #F8FAFC;
+      border-color: #D1D5DB;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
   }
 
   &.delete {
     background-color: #FEF2F2;
     border: 1px solid #FEE2E2;
     color: #FF0000;
+
+    &:hover {
+      background-color: #FEE2E2;
+      border-color: #FECACA;
+      color: #DC2626;
+    }
   }
 
   &.sm {
