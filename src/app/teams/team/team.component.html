@@ -1,1 +1,47 @@
-<p>team works!</p>
+<app-header-page></app-header-page>
+<div class="page-top">
+  <div class="page-details">
+    <div class="logo">
+      @if (team()?.logo_url) {
+        <img [attr.src]="team()?.logo_url"  alt="">
+      } @else {
+        <svg width="120" height="120">
+          <use xlink:href="assets/svg/sprite.svg#emblema"></use>
+        </svg>
+      }
+    </div>
+    <div class="details">
+      <h2>{{ team()?.name }}</h2>
+      <p>{{team()?.city}}</p>
+    </div>
+  </div>
+  <div class="page-actions">
+    <app-button
+      [type]="'button'"
+      [classType]="'primary sm'"
+      [label]="'Follow'"
+    >
+    </app-button>
+  </div>
+</div>
+<ul class="tabs">
+  @for (menu of tabsMenu(); track $index) {
+    <li
+      [class.active]="activeTab() === menu.value"
+      (click)="activeTab.set(menu.value)"
+    >{{ menu.label }}</li>
+  }
+</ul>
+<!-- <div class="tab-body">
+  @switch (activeTab()) {
+    @case ('teams') {
+      <app-teams
+        [tournament]="tournament()"
+        [teamsSuggestions]="teamsSuggestions()"
+        (onSearch)="searchTeams($event)"
+        (onInvite)="inviteToTournament($event)"
+        (onDelete)="deleteTeam($event)"
+      ></app-teams>
+    }
+  }
+</div> -->

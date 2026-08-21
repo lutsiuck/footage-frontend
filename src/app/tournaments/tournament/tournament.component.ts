@@ -59,7 +59,7 @@ export class TournamentComponent implements OnInit{
   ngOnInit(): void {
     this.route.paramMap
       .pipe(
-        switchMap((params: any) => this.tournamentService.getTournament(params.get('id') || EMPTY)),
+        switchMap((params: any) => this.tournamentService.getTournament(params.get('id')) || EMPTY),
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((tournament: ITournament) => this.tournament.set(tournament));
