@@ -1,0 +1,88 @@
+<div class="search">
+  @if ((team()?.team_members || []) | checkUserInTeam: user()?.id! : true) {
+    <h3 class="search-label">Add Teams</h3>
+    <div class="search-input">
+      <svg class="search-icon" width="20" height="20">
+        <use xlink:href="assets/svg/sprite.svg#search"></use>
+      </svg>
+      <input 
+        [formControl]="search"
+        type="text" 
+        placeholder="Search existing teams..."
+      >
+      @if (playersSuggestions().length > 0) {
+        <ul 
+          class="suggestions"
+          animate.leave="leaving"
+        >
+          @for (player of playersSuggestions(); track $index) {
+            <li>
+              <div class="logo">
+                <img [attr.src]="player.avatar_url || 'assets/images/user.png'" alt="">
+              </div>
+              {{ player.name }}
+              <app-button 
+                [label]="'Invite'" 
+                [type]="'button'"
+                [classType]="'primary sm'"
+                (click)="onInvite.emit(player.id!)"
+              ></app-button>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  }
+
+  <div class="players-list">
+    @for (player of team()?.team_members || []; track $index) {
+      <div class="player">
+        <div class="player-logo">
+          <img [attr.src]="player?.avatar_url || 'assets/images/user.png'" alt="">
+        </div>
+        <div class="player-name">
+          {{ player?.name }}
+        </div>
+        @if (player?.role === 'captain') {
+          <div class="player-role">
+            <svg width="32" height="28">
+              <use xlink:href="assets/svg/sprite.svg#captain"></use>
+            </svg>
+          </div>
+        }
+        @if (player?.status === membershipStatusesEnum.REQUESTED || player?.status === membershipStatusesEnum.INVITED) {
+          <div class="player-role">
+            <span class="role">{{player.status}}</span>
+          </div>
+        }
+        @if ((team()?.team_members || []) | checkUserInTeam: user()?.id! : true) {
+          <div class="player-actions">
+            @if (player?.role !== 'captain' && player?.status !== membershipStatusesEnum.REQUESTED && player?.status !== membershipStatusesEnum.INVITED) {
+              <app-button 
+                [label]="'Delete'" 
+                [type]="'button'"
+                [classType]="'delete sm'"
+                (click)="onDelete.emit(player.user_id!)"
+              ></app-button>
+            }
+            @if (player?.status === membershipStatusesEnum.REQUESTED) {
+              <app-button 
+                [label]="'Approve'" 
+                [type]="'button'"
+                [classType]="'primary sm'"
+                (click)="onApprove.emit(player.user_id!)"
+              ></app-button>
+              <app-button 
+                [label]="'Reject'" 
+                [type]="'button'"
+                [classType]="'delete sm'"
+                (click)="onReject.emit(player.user_id!)"
+              ></app-button>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+

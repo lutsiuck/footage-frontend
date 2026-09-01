@@ -23,9 +23,9 @@ export interface ITeam {
 export interface ITeamMembers {
   id: string;
   team_id: string;
-  user: {
-    id: string,
-    name: string,
-    avatar_url?: string
-  }
+  user_id: string,
+  name: string,
+  avatar_url?: string,
+  role?: string
+  status?: MembershipStatuses
 }

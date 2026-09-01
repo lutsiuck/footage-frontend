@@ -125,7 +125,7 @@ export class TeamsListComponent implements OnInit {
   }
 
   followTeam(teamId: string, members: ITeamMembers[]) {
-    const isFollowed = members.some((member) => member.user.id === this.user()?.id);
+    const isFollowed = members.some((member) => member.user_id === this.user()?.id);
     if (!isFollowed) {
       this.teamService.joinToTeam(teamId)
         .pipe(takeUntilDestroyed(this.destroyRef))

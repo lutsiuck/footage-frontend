@@ -19,7 +19,7 @@
     <app-button
       [type]="'button'"
       [classType]="'primary sm'"
-      [label]="'Follow'"
+      [label]="((team()?.team_members || []) | checkUserInTeam: user()?.id!) ? 'Unfollow' : 'Follow'"
     >
     </app-button>
   </div>
@@ -32,16 +32,19 @@
     >{{ menu.label }}</li>
   }
 </ul>
-<!-- <div class="tab-body">
+<div class="tab-body">
   @switch (activeTab()) {
-    @case ('teams') {
-      <app-teams
-        [tournament]="tournament()"
-        [teamsSuggestions]="teamsSuggestions()"
-        (onSearch)="searchTeams($event)"
-        (onInvite)="inviteToTournament($event)"
-        (onDelete)="deleteTeam($event)"
-      ></app-teams>
+    @case ('players') {
+      <app-players
+        [team]="team()"
+        [user]="user()"
+        [playersSuggestions]="playersSuggestions()"
+        (onSearch)="searchPlayers($event)"
+        (onInvite)="inviteToTeam($event)"
+        (onDelete)="deletePlayer($event)"
+        (onApprove)="approvePlayer($event)"
+        (onReject)="rejectPlayer($event)"
+      ></app-players>
     }
   }
-</div> -->
+</div>

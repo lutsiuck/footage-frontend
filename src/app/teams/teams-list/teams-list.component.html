@@ -52,7 +52,7 @@
         <div class="team-followers">
           @for (teamMember of team?.team_members?.slice(0, 3) || []; track $index) {
             <div class="team-member">
-              <img [attr.src]="teamMember?.user?.avatar_url ? teamMember.user.avatar_url : 'assets/images/user.png'"  alt="">
+              <img [attr.src]="teamMember?.avatar_url ? teamMember.avatar_url : 'assets/images/user.png'"  alt="">
             </div>
           }
           @if (team.team_members && team.team_members.length > 3) {

@@ -67,7 +67,7 @@ export class TournamentComponent implements OnInit{
 
   searchTeams(value: string | null) {
     if (value && value.length > 2) {
-      this.teamsService.getTeams({search: value})
+      this.teamsService.getTeams({nameTeam: value})
         .pipe(
           takeUntilDestroyed(this.destroyRef)
         )
